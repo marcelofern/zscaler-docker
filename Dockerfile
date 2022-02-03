@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 COPY . /app
 WORKDIR /app
 
-RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends semodule-utils
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
   curl \
   dbus \
   jq \
@@ -31,11 +31,10 @@ RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends s
   libqt5widgets5 \
   net-tools \
   sudo \
-  systemctl \
-  echo \
   policycoreutils \
   dmidecode \
   systemd \
+  bash \
   vim
 
 RUN /app/installer.run
