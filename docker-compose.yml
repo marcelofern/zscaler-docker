@@ -10,7 +10,8 @@ services:
       # this case, the host's DISPLAY.
       - DISPLAY=${DISPLAY}
     build: .
-    command: /opt/zscaler/bin/ZSTray
+      # command: /opt/zscaler/bin/ZSTray
+    command: sleep 99999
     volumes:
       - .:/app
       #  pass X server authentication through the container, by allowing

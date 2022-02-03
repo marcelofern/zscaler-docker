@@ -3,8 +3,7 @@ FROM ubuntu:20.04
 COPY . /app
 WORKDIR /app
 
-RUN apt-get update --fix-missing
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends semodule-utils
   curl \
   dbus \
   jq \
@@ -33,6 +32,10 @@ RUN apt-get install -y --no-install-recommends \
   net-tools \
   sudo \
   systemctl \
+  echo \
+  policycoreutils \
+  dmidecode \
+  systemd \
   vim
 
 RUN /app/installer.run
