@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  app:
+    image: zscaler-dockerised:latest
+    tty: true
+    stdin_open: true
+    environment:
+      # This will instruct the GUI program which X-server to connect to, in
+      # this case, the host's DISPLAY.
+      - DISPLAY=${DISPLAY}
+    build: .
+    command: /opt/zscaler/bin/ZSTray
+    volumes:
+      - .:/app
+      #  pass X server authentication through the container, by allowing
+      # it to communicate with /root directly.
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+    # For the volumes to work adequately, we need to use the host network.
+    network_mode: host
