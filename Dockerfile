@@ -3,7 +3,9 @@ FROM ubuntu:20.04
 COPY . /app
 WORKDIR /app
 
-RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends -q \
   curl \
   dbus \
   jq \
@@ -30,11 +32,15 @@ RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
   libqt5webview5 \
   libqt5widgets5 \
   net-tools \
+  semodule-utils \
   sudo \
   policycoreutils \
   dmidecode \
-  systemd \
+  systemctl \
+  selinux-basics \
+  selinux-policy-default \
   bash \
   vim
 
+RUN /bin/bash
 RUN /app/installer.run
